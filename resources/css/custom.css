@@ -1,0 +1,18 @@
+.dashboard-welcome {
+    background-image: url('../images/ecommerce-bg.png');
+    background-size:230px;
+    background-position:right bottom;z-index:-1;
+}
+
+.intranet-bg-image{
+    background-position: center;
+    background-size: cover;
+    /*height: 175px;*/
+    /*background-image : 'url(/../../images/intranet-img/bg1.jpg)';*/
+    background-image: url('../images/intranet-img/bg1.jpg');
+}
+
+.swal2-popup {
+    font-size: 0.5rem !important;
+    /*font-family: Georgia, serif;*/
+}

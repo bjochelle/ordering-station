@@ -16,13 +16,13 @@
                                         <router-link
                                             :to="{ name: 'Welcome' }"
                                             class="link-light mb-4 font-sans-serif fs-4 d-inline-block fw-bolder text-decoration-none">
-                                            <img class="img-fluid" src="../../../images/intranet-img/vcygroup.jpg">
+                                            <img class="img-fluid" src="../../../images/logo.png">
                                         </router-link>
                                     </div>
                                 </div>
                                 <div class="mt-3 mb-4 mt-md-4 mb-md-5 light">
                                     <p class="text-white">For any concerns?
-                                        <br>Contact IT Department. Dial 3314
+                                        <br>Contact ....
                                     </p>
                                     <!--                                    <p class="mb-0 mt-4 mt-md-5 fs&#45;&#45;1 fw-semi-bold text-white opacity-75">Read our <a class="text-decoration-underline text-white" href="#!">terms</a> and <a class="text-decoration-underline text-white" href="#!">conditions </a></p>-->
                                 </div>

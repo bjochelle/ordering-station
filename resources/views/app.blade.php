@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff">
-    <title>Bacolod Triumph Hardware</title>
+    <title>Mobile Ordering Station</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     {{--    <link rel="icon" type="image/x-icon" href="{{Vite::asset('resources/images/favicon.ico')}}">--}}

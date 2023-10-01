@@ -6,16 +6,6 @@
             <div class="card bg-100 shadow-none border mb-3">
                 <div class="row gx-0 flex-between-center">
                     <AmBreadcrumbs :showCurrentCrumb="true" class="col-sm-auto d-flex align-items-start mt-2 mb-2"/>
-                    <!--                    <div class="col-sm-auto d-flex align-items-center"><img alt=""-->
-                    <!--                                                                            class="ms-n2"-->
-                    <!--                                                                            src="../../images/connect-circle.png"-->
-                    <!--                                                                            width="70">-->
-                    <!--                        <div>-->
-                    <!--                            <h4 class="text-primary fw-bold mb-0">{{ page_name }}</h4>-->
-                    <!--                        </div>-->
-                    <!--                        <img alt="" class="ms-n4 d-md-none d-lg-block" src="../../images/crm-line-chart.png"-->
-                    <!--                             width="150">-->
-                    <!--                    </div>-->
                 </div>
             </div>
             <router-view v-slot="{ Component,route }">

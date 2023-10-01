@@ -1,8 +1,10 @@
 
 import users_management_routes from "@/routes/users_management_routes";
+import public_management_routes from "@/routes/public_routes";
 
 
 const routes = [
+    ...public_management_routes,
     {
         path: '/log-in',
         component: () => import('@/layout/authentication/Login.vue'),
@@ -12,10 +14,9 @@ const routes = [
             requiresAuth: false, //false for testing purposes
         },
     },
-
     {
-        path: '/', //auth
-        redirect: {name: 'Welcome'},
+        path: '/main', //auth
+        redirect: {name: 'Home'},
         component: () => import('@/layout/Main.vue'),
         children: [
             {
@@ -28,6 +29,7 @@ const routes = [
                 },
             },
             ...users_management_routes,
+            
         ]
     },
     {

@@ -1,5 +1,5 @@
 
-# Vue_auth_5
+# MOS
 
 This is a complete VUE JS version 5 user management with Laravel Sunctum, Fortify, Spatie roles and permissions. This will help for the project starters that needs to have a complete user management template.
 

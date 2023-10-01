@@ -3,10 +3,8 @@
         <div class="container" data-layout="container">
             <div class="row flex-center min-vh-100 py-6 text-center">
                 <div class="col-sm-10 col-md-8 col-lg-6 col-xxl-5">
-                    <a class="d-flex flex-center mb-4" href="../../index.html">
-                        <!--                        <img class="me-2" src="../../../images/bth-logo/logo-2.png" alt="" width="280" />-->
-                        <img alt="" class="me-2" src="../../../images/intranet-img/vcygroup.jpg" width="280">
-                        <!--                        <span class="font-sans-serif fw-bolder fs-5 d-inline-block">BTH</span>-->
+                    <a class="d-flex flex-center mb-4" href="#">
+                        <img alt="" class="me-2" src="../../../images/logo.png" width="280">
                     </a>
                     <div class="card">
                         <div class="card-body p-4 p-sm-5">
@@ -16,7 +14,7 @@
                             <hr/>
                             <p>Make sure the address is correct and that the page hasn't moved. If you think this is a
                                 mistake,
-                                <a href="mailto:itsupport@vcygroup.com">contact us</a>.</p>
+                                <a href="mailto:test@gmail.com">contact us</a>.</p>
                             <router-link :to="{ name: 'Welcome' }" class="btn btn-primary btn-sm mt-3" tag="a">
                                 <span class="fas fa-home me-2"></span>Take me home
                             </router-link>

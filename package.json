@@ -17,6 +17,7 @@
     "dependencies": {
         "@vitejs/plugin-vue": "^4.0.0",
         "chart.js": "^4.2.0",
+        "fancygrid": "^1.7.176",
         "jspdf": "^2.5.1",
         "jspdf-autotable": "^3.5.28",
         "laravel-vue-pagination": "^4.0.0",

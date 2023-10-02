@@ -7,7 +7,7 @@ export default [
         redirect: {name: 'Home'},
         meta: {
             title: 'Homes',
-            requiresAuth: false, //false for testing purposes
+            requiresAuth: false, 
         },
         children: [
             {
@@ -16,20 +16,18 @@ export default [
                 name: 'Home',
                 meta: {
                     title: 'Home',
-                    requiresAuth: false, //false for testing purposes
+                    requiresAuth: false, 
                 },
             },
-    
-            // {
-            //     path: 'products/:id',
-            //     component: () => import('@/layout/views/public/ProductDetails.vue'),
-            //     name: 'ApplyJob',
-            //     meta: {
-            //         title: 'Apply Job',
-
-            //         requiresAuth: false, //false for testing purposes
-            //     },
-            // },
+            {
+                path: 'product-details/:name',
+                component: () => import('@/layout/views/public/ProductDetails.vue'),
+                name: 'ProductDetails',
+                meta: {
+                    title: 'Product Details',
+                    requiresAuth: false, 
+                },
+            },
          
         ]
     },

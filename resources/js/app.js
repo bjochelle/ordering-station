@@ -57,4 +57,5 @@ const app = createApp(App)
 app.mixin(RolesMixin);
 app.mixin(PermissionsMixin);
 app.component('v-select', vSelect);
+
 app.mount('#app');

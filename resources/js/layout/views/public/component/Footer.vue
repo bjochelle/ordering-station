@@ -25,7 +25,7 @@ const error = useErrorStore();
                 <div class="col-lg-4">
                     <h5 class="text-uppercase text-white  mb-3">CONTACT US</h5>
                     <p class="text-600 text-white">  <br>
-                        <strong>Phone :</strong> (034) 488-8888<br>
+                        <strong>Phone :</strong> (034) 488-1234<br>
                     </p>
 
 
@@ -40,7 +40,7 @@ const error = useErrorStore();
                                         Home
                                     </router-link>
                                 </li>
-                              
+
                             </ul>
                         </div>
 

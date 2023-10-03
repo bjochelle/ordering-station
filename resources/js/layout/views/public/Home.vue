@@ -1,159 +1,321 @@
 <template>
-<div class="container-fluid mt-7">
-    <div class="row">
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-9">
-            <div class="content">
-        <div class="card mb-3">
-            <div class="card-body">
-              <div class="row justify-content-between align-items-center">
-                <div class="col-sm-auto mb-2 mb-sm-0">
-                  <h6 class="mb-0">Showing 1-24 of 205 Products</h6>
-                </div>
-                <div class="col-sm-auto">
-                  <form class="d-inline-block mr-3">
-                    <div class="input-group input-group-sm d-flex align-items-center">
-                      <small class="mr-1">Sort by: </small><select class="custom-select" aria-label="Bulk actions">
-                        <option selected="">Best Match</option>
-                        <option value="Refund">Newest</option>
-                        <option value="Delete">Price</option>
-                      </select>
-                    </div>
-                  </form>
-                  <a class="text-600" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Product List"><span class="" data-fa-i2svg="">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M9 6l11 0"></path>
-                    <path d="M9 12l11 0"></path>
-                    <path d="M9 18l11 0"></path>
-                    <path d="M5 6l0 .01"></path>
-                    <path d="M5 12l0 .01"></path>
-                    <path d="M5 18l0 .01"></path>
-                    </svg>
-                </span></a>
-                </div>
-              </div>
-            </div>
-    </div>
-
-    <div class="card mb-3">
-            <div class="card-body">
-              <div class="row">
-                <div class="mb-4 col-md-6 col-lg-4" v-for="item in 10" :key="item">
-                  <div class="border rounded h-100 d-flex flex-column justify-content-between pb-3">
-                    <div class="overflow-hidden">
-                      <div class="position-relative rounded-top overflow-hidden">
-
-                        <router-link
-                                :to="{ name: 'ProductDetails',params:{name:'Product Name'} }" class="d-block"
-                        
-                                data-bs-placement="top" data-bs-toggle="tooltip" type="button"
-                                title="View Product Details">
-                                <img class="img-fluid rounded-top" 
-                            src="https://picsum.photos/400/200" alt="">
-                      </router-link>
-
-                          <span class="badge badge-pill badge-success position-absolute r-0 t-0 mt-2 mr-2 z-index-2">New</span>
-                      </div>
-                      <div class="p-3">
-                        <h5 class="fs-0">
-                          <a class="text-dark" href="../e-commerce/product-details.html">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
-                            Xeon W, 1TB SSD)</a>
-                        </h5>
-                        <p class="fs--1 mb-3">
-                          <a class="text-500" href="#!">Computer &amp; Accessories</a>
-                        </p>
-                        <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                          SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
-                        </h5>
-                        <p class="fs--1 mb-1">
-                          Stock: <strong class="text-success">Available</strong>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between px-3">
-                      <div>
-                        
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled text-warning" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor"></path>
-</svg>
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled text-warning" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor"></path>
-</svg>
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled text-warning" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor"></path>
-</svg>
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled text-warning" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor"></path>
-</svg>
-<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star-filled text-warning" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" stroke-width="0" fill="currentColor"></path>
-</svg>
-                        <span class="ml-1">(8)</span>
-                      </div>
-                      <div>
-                        <a class="btn btn-sm btn-falcon-default mr-2" href="#!" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Wish List">
-                            <span class="" data-fa-i2svg="">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path>
+    <div class="container pb-lg-9 pb-xl-2">
+        <div class="row g-3">
+            <div class="col-xxl-2 col-xl-3">
+                <aside class="scrollbar-overlay font-sans-serif p-4 p-xl-3 ps-xl-0 offcanvas offcanvas-start offcanvas-filter-sidebar" tabindex="-1" id="filterOffcanvas" aria-labelledby="filterOffcanvasLabel" data-simplebar="init"><div class="simplebar-wrapper" style="margin: -16px -16px -16px 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset ps-3" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 16px 16px 16px 0px;">
+                    <div class="d-flex flex-between-center">
+                        <div class="d-flex gap-2 flex-xl-grow-1 align-items-center justify-content-xl-between">
+                            <h5 class="mb-0 text-700 d-flex align-items-center" id="filterOffcanvasLabel">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-filter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
                                 </svg>
-                            </span></a><a class="btn btn-sm btn-falcon-default" href="#!" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
-                                    <span class="" data-fa-i2svg="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-plus" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                                        <path d="M12.5 17h-6.5v-14h-2"></path>
-                                        <path d="M6 5l14 1l-.86 6.017m-2.64 .983h-10.5"></path>
-                                        <path d="M16 19h6"></path>
-                                        <path d="M19 16v6"></path>
-                                        </svg>
-                                    </span></a>
-                      </div>
+                                <span>Filter</span></h5><button class="btn btn-sm btn-outline-secondary">Reset</button>
+                        </div><button class="btn-close text-reset d-xl-none shadow-none" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                  </div>
+                    <div class="d-flex gap-2 flex-wrap my-3">
+
+            <span class="badge bg-300 text-600 py-0">Design<button class="btn btn-link btn-sm p-0 text-600 ms-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M18 6l-12 12"></path>
+                        <path d="M6 6l12 12"></path>
+                      </svg>
+            </button></span>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="border-bottom"><a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#category-collapse" aria-controls="category-collapse" aria-expanded="true">Category</a>
+                            <div class="collapse show" id="category-collapse">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <div class="form-check d-flex ps-0">
+                                            <label class="form-check-label fs--1 flex-1 text-truncate" for="filter-category-free">
+                                                Laptop</label>
+                                            <input class="form-check-input" type="checkbox" checked="checked" name="free" id="filter-category-free"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a class="nav-link collapse-indicator-plus fs--2 fw-medium text-600 py-3" data-bs-toggle="collapse" href="#enrolled-courses-collapse" aria-controls="enrolled-courses-collapse" aria-expanded="false">Brand </a>
+                            <div class="collapse" id="enrolled-courses-collapse">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <div class="form-check d-flex ps-0"><label class="form-check-label fs--1 flex-1 text-truncate" for="filter-brand-1-show">Brand 1</label><input class="form-check-input" type="checkbox" name="enrolled-courses" id="filter-brand-1-show"></div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check d-flex ps-0"><label class="form-check-label fs--1 flex-1 text-truncate" for="filter-enrolled-courses-show">Brand 2</label><input class="form-check-input" type="checkbox" name="enrolled-courses" id="filter-enrolled-courses-show"></div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check d-flex ps-0"><label class="form-check-label fs--1 flex-1 text-truncate" for="filter-enrolled-courses-don’t-show">Brand 3</label><input class="form-check-input" type="checkbox" name="enrolled-courses" id="filter-enrolled-courses-don’t-show"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 1047px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 719px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></aside>
+            </div>
+            <div class="col-xxl-10 col-xl-9" id="product-list">
+                <div class="card mb-3">
+                    <div class="card-body  pt-md-3">
+                        <div class="row g-3 d-flex justify-content-between ">
+                            <div class="col-1 col-xs-1 col-sm-1 d-xl-none"><button class="btn btn-sm p-0 btn-link position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-filter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
+                                </svg>
+                            </button></div>
+                            <div class="col-11 col-xs-11 col-sm-11  col-lg-5">
+                                <form class="position-relative"><input class="form-control form-control-sm search-input lh-1 rounded-2 ps-4" type="search" placeholder="Search..." aria-label="Search">
+                                    <div class="position-absolute top-50 start-0 translate-middle-y ms-2"><svg class="svg-inline--fa fa-search fa-w-16 text-400 fs--1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <span class="fas fa-search text-400 fs--1"></span> Font Awesome fontawesome.com --></div>
+                                </form>
+                            </div>
+                            <div class="col-12 col-xs-12 col-sm-12 col-lg-6 position-sm-relative  top-0 end-0 me-3 me-sm-0 p-0">
+                                <div class="row g-0 g-md-3 justify-content-end">
+                                    <div class="col-auto">
+                                        <form class="row gx-2">
+                                            <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Sort by:</small></div>
+                                            <div class="col-auto"> <select class="form-select form-select-sm" aria-label="Bulk actions">
+                                                <option value="rating">Name</option>
+                                                <option value="price">Price</option>
+                                            </select></div>
+                                            <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Per Page:</small></div>
+                                            <div class="col-auto"> <select class="form-select form-select-sm" aria-label="Bulk actions">
+                                                <option value="rating">48</option>
+                                                <option value="review">96</option>
+                                                <option value="price">144</option>
+                                            </select></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="row mb-3 g-3">
+                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
+                        <div class="card h-100 overflow-hidden">
+                            <div class="card-body p-0 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="text-center text-white bold">
+                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <h5 class="fs-0">
+                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
+                                            Xeon W, 1TB SSD)</span>
+                                    </h5>
+                                    <p class="fs--1 mb-3">
+                                        <span class="text-500">Computer &amp; Accessories</span>
+                                    </p>
+                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
+                                    </h5>
+                                    <p class="fs--1 mb-1">
+                                        Stock: <strong class="text-success">Available</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
+                        <div class="card h-100 overflow-hidden">
+                            <div class="card-body p-0 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="text-center text-white bold">
+                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <h5 class="fs-0">
+                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
+                                            Xeon W, 1TB SSD)</span>
+                                    </h5>
+                                    <p class="fs--1 mb-3">
+                                        <span class="text-500">Computer &amp; Accessories</span>
+                                    </p>
+                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
+                                    </h5>
+                                    <p class="fs--1 mb-1">
+                                        Stock: <strong class="text-success">Available</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
+                        <div class="card h-100 overflow-hidden">
+                            <div class="card-body p-0 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="text-center text-white bold">
+                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <h5 class="fs-0">
+                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
+                                            Xeon W, 1TB SSD)</span>
+                                    </h5>
+                                    <p class="fs--1 mb-3">
+                                        <span class="text-500">Computer &amp; Accessories</span>
+                                    </p>
+                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
+                                    </h5>
+                                    <p class="fs--1 mb-1">
+                                        Stock: <strong class="text-success">Available</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
+                        <div class="card h-100 overflow-hidden">
+                            <div class="card-body p-0 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="text-center text-white bold">
+                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <h5 class="fs-0">
+                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
+                                            Xeon W, 1TB SSD)</span>
+                                    </h5>
+                                    <p class="fs--1 mb-3">
+                                        <span class="text-500">Computer &amp; Accessories</span>
+                                    </p>
+                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
+                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
+                                    </h5>
+                                    <p class="fs--1 mb-1">
+                                        Stock: <strong class="text-success">Available</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row g-3 flex-center justify-content-md-between">
+                            <div class="col-auto">
+                            </div>
+                            <div class="col-auto"> <button class="btn btn-falcon-default btn-sm me-2" type="button" disabled="disabled" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Prev" data-bs-original-title="Prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M15 6l-6 6l6 6" />
+                                </svg>
+                            </button><a class="btn btn-sm btn-falcon-default text-primary me-2" href="#!">1</a><a class="btn btn-sm btn-falcon-default me-2" href="#!">2</a><a class="btn btn-sm btn-falcon-default me-2" href="#!">3</a><a class="btn btn-sm btn-falcon-default me-2" href="#!"> <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                            </svg></a><a class="btn btn-sm btn-falcon-default me-2" href="#!">303</a><button class="btn btn-falcon-default btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Next" data-bs-original-title="Next">  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M9 6l6 6l-6 6" />
+                            </svg></button></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer bg-light d-flex justify-content-center">
-              <div>
-                <button class="btn btn-falcon-default btn-sm mr-2" type="button" disabled="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Prev">
-                  <span class="" data-fa-i2svg="">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                      <path d="M15 6l-6 6l6 6" />
-                  </svg>
-                  </span></button><a class="btn btn-sm btn-falcon-default text-primary mr-2" href="#!">1</a><a class="btn btn-sm btn-falcon-default mr-2" href="#!">2</a><a class="btn btn-sm btn-falcon-default mr-2" href="#!">35</a><button class="btn btn-falcon-default btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Next">
-                  <span class="" data-fa-i2svg="">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M9 6l6 6l-6 6" />
-                  </svg>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-    </div>
         </div>
     </div>
 
-</div>
+
 
 </template>
 
-<script>
-  import { ref} from "vue";
-  const item = ref(3);
+<script setup>
+import {ref} from "vue";
+import {useErrorStore} from "@/store/Error";
+import {useRoute, useRouter} from "vue-router";
+const route = useRoute();
+const router = useRouter();
+const error = useErrorStore();
+const modal_properties = ref({
+    title: null,
+    backdrop: null,
+    keyboard: true,
+    type: null,
+    size: null
+})
+
+let thisModal = ref(null);
+let isShownModal = ref(false);
+const product_data = ref('');
+
+const showQuickView = async() => {
+    modal_properties.value.title = ''
+    modal_properties.value.backdrop = 'static'
+    modal_properties.value.keyboard = true
+    modal_properties.value.type = 'view'
+    modal_properties.value.size = 'lg'
+    product_data.value = "true";
+    if(await product_data.value){
+        isShownModal.value=true;
+        await thisModal.value.show();
+    }
+}
+
+
+const goToProductDetails = async(name) => {
+    await router.push({
+        name: "ProductDetails",
+        params: {'name': name}
+    });
+
+}
+
+
+const modalClose = () => {
+    isShownModal.value=false;
+//  applicant.value = {}
+    error.$reset()
+    thisModal.value.hide();
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+article:hover{
+ cursor: pointer;
+}
+
+@media  screen and (max-width: 600px) {
+    #product-list {
+        position: absolute;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media  screen and (min-width: 600px) {
+    #product-list {
+        position: absolute;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media  screen and (min-width: 768px) {
+    #product-list{
+        position: absolute;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media  screen and (min-width: 992px) {
+    #product-list{
+        position: absolute;
+    }
+}
+
+@media  screen and (min-width: 1200px) {
+    #product-list{
+        position: relative;
+    }
+}
+
 
 </style>

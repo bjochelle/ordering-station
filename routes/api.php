@@ -32,3 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('roles/datatable', [\App\Http\Controllers\UserManagement\RoleController::class, 'dataTable']);
     Route::resource('roles', \App\Http\Controllers\UserManagement\RoleController::class);
 });
+
+Route::prefix('public')->group(function () {
+    Route::get('/promo', [\App\Http\Controllers\PromoController::class, 'getPromoLocation']);
+});
+

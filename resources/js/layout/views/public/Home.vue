@@ -65,7 +65,9 @@
                                 </svg>
                             </button></div>
                             <div class="col-11 col-xs-11 col-sm-11  col-lg-5">
-                                <form class="position-relative"><input class="form-control form-control-sm search-input lh-1 rounded-2 ps-4" type="search" placeholder="Search..." aria-label="Search">
+                                <form class="position-relative">
+                                    <input class="form-control form-control-sm search-input lh-1 rounded-2 ps-4" type="search" placeholder="Search..." aria-label="Search"
+                                    v-model="table.search">
                                     <div class="position-absolute top-50 start-0 translate-middle-y ms-2"><svg class="svg-inline--fa fa-search fa-w-16 text-400 fs--1" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <span class="fas fa-search text-400 fs--1"></span> Font Awesome fontawesome.com --></div>
                                 </form>
                             </div>
@@ -74,15 +76,18 @@
                                     <div class="col-auto">
                                         <form class="row gx-2">
                                             <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Sort by:</small></div>
-                                            <div class="col-auto"> <select class="form-select form-select-sm" aria-label="Bulk actions">
-                                                <option value="rating">Name</option>
-                                                <option value="price">Price</option>
+                                            <div class="col-auto"> 
+                                                <select class="form-select form-select-sm" aria-label="Bulk actions"
+                                                v-model="table.currentSort">
+                                                <option value="eff_to">Latest</option>
+                                                <option value="item_desc">Name</option>
+                                                <option value="regular_price">Price</option>
                                             </select></div>
                                             <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Per Page:</small></div>
-                                            <div class="col-auto"> <select class="form-select form-select-sm" aria-label="Bulk actions">
-                                                <option value="rating">48</option>
-                                                <option value="review">96</option>
-                                                <option value="price">144</option>
+                                            <div class="col-auto"> 
+                                                <select class="form-select form-select-sm" aria-label="Bulk actions"
+                                                v-model="table.currentPage">
+                                                <option v-for="page in showPage">{{ page }}</option>
                                             </select></div>
                                         </form>
                                     </div>
@@ -92,110 +97,33 @@
                     </div>
                 </div>
                 <div class="row mb-3 g-3">
-                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
+                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')"
+                    v-for="item in promo_items.data">
                         <div class="card h-100 overflow-hidden">
                             <div class="card-body p-0 d-flex flex-column justify-content-between">
                                 <div>
                                     <div class="text-center text-white bold">
-                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
+                                        <img class="w-100 h-100 fit-cover" 
+                                        loading="lazy" 
+                                        :src="buildImageSrc(item.image_name,'product_thumb')" alt="">
                                     </div>
                                 </div>
                                 <div class="p-3">
                                     <h5 class="fs-0">
-                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
-                                            Xeon W, 1TB SSD)</span>
+                                        <span class="text-dark">{{ item.item_desc }}</span>
                                     </h5>
                                     <p class="fs--1 mb-3">
-                                        <span class="text-500">Computer &amp; Accessories</span>
+                                        <span class="text-500">{{ item.inv_dim1 }} &amp; {{ item.inv_dim2 }}</span>
                                     </p>
                                     <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
+                                        SGD {{ item.regular_price }}<del class="ml-2 fs--1 text-500">SGD {{ item.mbr_price }} </del>
                                     </h5>
-                                    <p class="fs--1 mb-1">
-                                        Stock: <strong class="text-success">Available</strong>
-                                    </p>
+                                  
                                 </div>
                             </div>
                         </div>
                     </article>
-                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
-                        <div class="card h-100 overflow-hidden">
-                            <div class="card-body p-0 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="text-center text-white bold">
-                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="p-3">
-                                    <h5 class="fs-0">
-                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
-                                            Xeon W, 1TB SSD)</span>
-                                    </h5>
-                                    <p class="fs--1 mb-3">
-                                        <span class="text-500">Computer &amp; Accessories</span>
-                                    </p>
-                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
-                                    </h5>
-                                    <p class="fs--1 mb-1">
-                                        Stock: <strong class="text-success">Available</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
-                        <div class="card h-100 overflow-hidden">
-                            <div class="card-body p-0 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="text-center text-white bold">
-                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="p-3">
-                                    <h5 class="fs-0">
-                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
-                                            Xeon W, 1TB SSD)</span>
-                                    </h5>
-                                    <p class="fs--1 mb-3">
-                                        <span class="text-500">Computer &amp; Accessories</span>
-                                    </p>
-                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
-                                    </h5>
-                                    <p class="fs--1 mb-1">
-                                        Stock: <strong class="text-success">Available</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')">
-                        <div class="card h-100 overflow-hidden">
-                            <div class="card-body p-0 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="text-center text-white bold">
-                                        <img class="w-100 h-100 fit-cover" src="../../../../../../images/products/1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="p-3">
-                                    <h5 class="fs-0">
-                                        <span class="text-dark">Apple iMac Pro (27-inch with Retina 5K Display, 3.0GHz 10-core Intel
-                                            Xeon W, 1TB SSD)</span>
-                                    </h5>
-                                    <p class="fs--1 mb-3">
-                                        <span class="text-500">Computer &amp; Accessories</span>
-                                    </p>
-                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                        SGD 1199.5<del class="ml-2 fs--1 text-500">SGD 2399 </del>
-                                    </h5>
-                                    <p class="fs--1 mb-1">
-                                        Stock: <strong class="text-success">Available</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                 
                 </div>
 
                 <div class="card">
@@ -229,36 +157,37 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {ref, onBeforeUnmount, onMounted, reactive,watch} from "vue";
 import {useErrorStore} from "@/store/Error";
 import {useRoute, useRouter} from "vue-router";
+import {usePromoItemStore} from "@/store/Promo";
+import {storeToRefs} from "pinia";
+
+const promoItemStore = usePromoItemStore()
+const error = useErrorStore();
+
 const route = useRoute();
 const router = useRouter();
-const error = useErrorStore();
-const modal_properties = ref({
-    title: null,
-    backdrop: null,
-    keyboard: true,
-    type: null,
-    size: null
-})
+const {promo_items} = storeToRefs(promoItemStore)//job variable from store
+const {fetchPromoItem} = promoItemStore; //job methods from store
 
-let thisModal = ref(null);
+const table = reactive({
+    currentSort: 'eff_to',
+    currentSortDir: 'asc',
+    search: '',
+    currentPage: '48',
+    sortClassActive: {
+        'activeDesc': false,
+        'activeAsc': true
+    },
+    show_disabled_job: false
+})
+const showPage = ['48', '96', '144']
+
+let pages = {}
+
 let isShownModal = ref(false);
 const product_data = ref('');
-
-const showQuickView = async() => {
-    modal_properties.value.title = ''
-    modal_properties.value.backdrop = 'static'
-    modal_properties.value.keyboard = true
-    modal_properties.value.type = 'view'
-    modal_properties.value.size = 'lg'
-    product_data.value = "true";
-    if(await product_data.value){
-        isShownModal.value=true;
-        await thisModal.value.show();
-    }
-}
 
 
 const goToProductDetails = async(name) => {
@@ -269,13 +198,57 @@ const goToProductDetails = async(name) => {
 
 }
 
+const buildImageSrc = (src, type = '') =>  {
+            if (src.substr(0, 4) === 'http')
+              return src;
+            else {
+              if (type == 'product_thumb')
+                return 'https://cdn.hachi.tech/assets/images/product_images_thumb/'+ src
+              else if (type == 'product_image')
+                return 'https://cdn.hachi.tech/assets/images/product_images/' + src
+              else
+                return 'https://cdn.hachi.tech/' + src;
+            }
+          };
 
-const modalClose = () => {
-    isShownModal.value=false;
-//  applicant.value = {}
-    error.$reset()
-    thisModal.value.hide();
+
+const dataTable = _.debounce(function (page) {
+
+if (typeof page === 'undefined') {
+    pages = 1;
 }
+pages = page;
+
+fetchPromoItem(table, pages);
+}, 800);
+
+ watch(
+    () => [table.search,table.currentPage, table.currentSort],
+    async (newValue) => {
+        if (newValue[0].length) { // search
+            dataTable(table,pages);
+        } else {
+            let query = await Object.assign({}, route.query);
+            delete query.search;
+            await router.replace({query});
+            dataTable(table,pages);
+
+        }
+
+    }
+)
+
+
+onMounted(() => {
+     dataTable(table,pages);
+})
+
+
+onBeforeUnmount(() => {
+    error.$reset()
+    promoItemStore.$reset();
+})
+
 </script>
 
 <style lang="scss" scoped>

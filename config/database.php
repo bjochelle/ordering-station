@@ -65,6 +65,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
+            'read'           => [
+                'host' => env('DB_READ_HOST', 'localhost'),
+            ],
+            'write'          => [
+                'host' => env('DB_WRITE_HOST', 'localhost'),
+            ],
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),

@@ -1,7 +1,37 @@
 <script setup>
 import VueCountdown from '@chenfengyuan/vue-countdown';
+import {useRoute, useRouter} from "vue-router";
+const route = useRoute();
+const router = useRouter();
+
+const payOrder = async(force = false) => {
+
+    let vm = this;
+
+    await router.push({
+        name: "OrderPaymentStatus",
+        params: {'id': '1'}
+    });
+
+    // My2c2p.getEncrypted("formPay2c2p", function (encryptedData, errCode, errDesc){
+
+    //     console.log(encryptedData,'encryptedData')
+
+    //        // if (encryptedData.encryptedCardInfo) {
+    //             // vm.sendData.s2c2p = {
+    //             //     cardHolderName: "sadsad",
+    //             //     encryptedCardInfo: encodeURI(4111111111111111),
+    //             //     maskedCardInfo: encryptedData.maskedCardInfo,
+    //             //     expMonthCardInfo: encryptedData.expMonthCardInfo,
+    //             //     expYearCardInfo: encryptedData.expYearCardInfo,
+    //             //     cardStoreCard: vm.forms.pay2c2p.fields.cardStoreCard,
+    //             // }
+
+    //        // }
+    //     });
 
 
+}
 // async payOrder(force = false){
 //     let vm = this;
 //
@@ -372,41 +402,10 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 //
 // },
 
-// dueOnCountdownEnd(){
-//
-//     this.$store.commit('loading');
-//
-//     this.$http.post('/checkout/cancelOrder?ref=pay_countdown', {orderId: this.orderId}).then(response => {
-//
-//         let payload = response.data;
-//
-//         this.$store.commit('loaded');
-//
-//         if (payload.success) {
-//             if (this.payMode == 'APAY') {
-//                 this.applePay.session.abort();
-//             }
-//             this.$Modal.info({
-//                 title: 'Order deleted',
-//                 content: "Your order has been deleted due to non-payment within 15 minutes",
-//                 okText: 'Continue Shopping',
-//                 onOk: () => {
-//                     this.$store.commit('loading');
-//                     window.location = payload.data.nextUrl;
-//                 }
-//             });
-//
-//         } else {
-//             this.$Message.info(payload.error.message);
-//         }
-//
-//     }).catch((error) => {
-//         this.$store.commit('loaded');
-//     }).then(() => {
-//         //
-//     });
-//
-// },
+const dueOnCountdownEnd = async() => {
+    console.log("sdsds")
+    // Delete order data
+}
 
 </script>
 
@@ -417,7 +416,7 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
                 <p class="order-timeout-counter-text h6 text-danger mb-1 ">
                     Order will be deleted if payment is not made within
                 </p>
-            <vue-countdown :time="15 * 60 * 1000" v-slot="{  minutes, seconds }" class="text-black h6 fw-bold"
+            <vue-countdown :time="1 * 60 * 1000" v-slot="{  minutes, seconds }" class="text-black h6 fw-bold"
                            @end="dueOnCountdownEnd">
                 {{ minutes }} : {{ seconds }}
                 <br>
@@ -463,7 +462,8 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
                         <h5 class="mb-0">Payment Method</h5>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form @submit.prevent="payOrder(false)"
+                        id="2c2p-payment-form'">
                             <div class="form-check mb-0">
                                 <input class="form-check-input" type="radio" value="" id="credit-card" checked="checked" name="payment-method"><label class="form-check-label mb-2 fs-1" for="credit-card">Credit Card</label></div>
                             <div class="row gx-0 ps-2 mb-2">
@@ -484,9 +484,7 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
                             <div class="row">
                                 <div class="col-md-5 col-xl-12 col-xxl-5 ps-lg-4 ps-xl-2 ps-xxl-5 text-center text-md-start text-xl-center text-xxl-start">
                                     <div class="border-bottom border-dashed d-block d-md-none d-xl-block d-xxl-none my-4"></div>
-                                    <button class="btn btn-success mt-3 mb-3 px-5" type="submit"
-                                            @click="payOrder(false)"
-                                    >Secure Pay</button>
+                                    <button class="btn btn-success mt-3 mb-3 px-5" type="submit">Secure Pay</button>
                                     <p class="fs--1 mt-3 mb-0">By clicking <strong>Confirm &amp; Pay </strong>button you have read and  agree to the <a href="#/online-sales-terms'">Online Sales Terms</a></p>
 
                                 </div>

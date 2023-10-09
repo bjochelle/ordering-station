@@ -49,6 +49,15 @@ export default [
                     requiresAuth: false,
                 },
             },
+            {
+                path: 'payment-status/:id',
+                component: () => import('@/layout/views/public/PaymentStatus.vue'),
+                name: 'OrderPaymentStatus',
+                meta: {
+                    title: 'OrderPayment',
+                    requiresAuth: false,
+                },
+            },
 
 
         ]

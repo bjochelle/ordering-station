@@ -28,10 +28,28 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <h5>
-                                Apple MacBook Pro (15" Retina, Touch Bar, 2.2GHz 6-Core Intel Core i7, 16GB RAM,
-                                256GB SSD) - Space Gray (Latest Model)
+                                {{ item_details.item_desc }}
                             </h5>
-                            <a class="fs--1 mb-2 d-block" href="#!">Computer &amp; Accessories</a>
+
+                            <div v-if="price_valid" class="product-detail" :class="(price_valid) ? '' : 'price-transparent'">
+            <div class="prices">
+              <span>{{ showPriceTag }} {{ showUnitPrice | amount }}</span>
+              <span class="text-red-700 text-sm" v-if="showRebate > 0">+ Get V{{ showRebate | amount('$') }}&nbsp;</span>
+              <span>
+                <i v-if="widgetContent.prices.regular_price > widgetContent.prices.unit_price">U.P. {{
+                  widgetContent.prices.regular_price | amount
+                }} &nbsp;</i>
+                <p class="IPPMsg text-sm" v-if="showUnitPrice >= 500">0% interest instalment plan (up to 24 months) for
+                  selected products above $500</p>
+                <!-- removed v_redemption link -->
+              </span>
+              <span v-if="price_valid && getGuestPromoText" class="text-red-700 text-sm"
+                v-html="getGuestPromoText"></span>
+            </div>
+
+            <rating-stars :item-id="widgetContent.item_id" />
+          </div>
+          
                             <p class="fs--1">
                                 Testing conducted by Apple in October 2018 using preproduction 2.9GHz 6‑core
                                 Intel Core i9‑based 15-inch MacBook Pro systems with Radeon Pro Vega 20
@@ -234,7 +252,8 @@ import VueSlickCarousel from 'vue-slick-carousel'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
-import {onMounted, ref} from "vue";
+import {ref, onBeforeUnmount, onMounted, reactive,watch} from "vue";
+
 
 import Swiper from 'swiper/bundle';
 
@@ -243,6 +262,19 @@ import 'swiper/css/bundle';
 
 import img_1 from '@/../images/products/1.jpg';
 import img_2 from '@/../images/products/1-3.jpg';
+
+import {useErrorStore} from "@/store/Error";
+import {useRoute, useRouter} from "vue-router";
+import {usePromoItemStore} from "@/store/Promo";
+import {storeToRefs} from "pinia";
+
+const promoItemStore = usePromoItemStore()
+const error = useErrorStore();
+
+const route = useRoute();
+const router = useRouter();
+const {item_details,price_valid} = storeToRefs(promoItemStore)//job variable from store
+const {fetchProductDetails} = promoItemStore; //job methods from store
 
 
 
@@ -258,7 +290,9 @@ const decrement = () => {
     }
 }
 
-onMounted(() => {
+onMounted(async() => {
+    const id = route.params['id'];
+    await fetchProductDetails(id);
     const swiper = new Swiper('.swiper', {
         // Optional parameters
         slidesPerView:5,

@@ -12,8 +12,11 @@ const router = createRouter({
 
 
 router.beforeEach(async (to, from, next) => {
-    document.title = to.meta.title + ' | ' + import.meta.env.VITE_APP_NAME;
+   
     pageTitle().pageName = to.meta.title;
+    const titleFromParams = to.params.name;
+    const title = (titleFromParams)?titleFromParams:to.meta.title;
+    document.title = title + ' | ' + import.meta.env.VITE_APP_NAME;
 
     if (to.matched.some(record => record.meta.requiresAuth)) {
         // this route requires auth, check if logged in

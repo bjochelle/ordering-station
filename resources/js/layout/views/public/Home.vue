@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="row mb-3 g-3">
-                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails('Product Name')"
+                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails(item.item_id,item.item_desc)"
                     v-for="item in promo_items.data">
                         <div class="card h-100 overflow-hidden">
                             <div class="card-body p-0 d-flex flex-column justify-content-between">
@@ -130,21 +130,30 @@
                     <div class="card-body">
                         <div class="row g-3 flex-center justify-content-md-between">
                             <div class="col-auto">
+                                <p class="text-font">Showing {{ promo_items.from || 0 }} to {{ promo_items.to || 0 }} of
+                                    {{ promo_items.total || 0 }}
+                                    entries</p>
                             </div>
-                            <div class="col-auto"> <button class="btn btn-falcon-default btn-sm me-2" type="button" disabled="disabled" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Prev" data-bs-original-title="Prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M15 6l-6 6l6 6" />
-                                </svg>
-                            </button><a class="btn btn-sm btn-falcon-default text-primary me-2" href="#!">1</a><a class="btn btn-sm btn-falcon-default me-2" href="#!">2</a><a class="btn btn-sm btn-falcon-default me-2" href="#!">3</a><a class="btn btn-sm btn-falcon-default me-2" href="#!"> <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-dots" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                                <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                                <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                            </svg></a><a class="btn btn-sm btn-falcon-default me-2" href="#!">303</a><button class="btn btn-falcon-default btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Next" data-bs-original-title="Next">  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M9 6l6 6l-6 6" />
-                            </svg></button></div>
+                            <div class="col-auto">
+
+                                <Bootstrap5Pagination :data="promo_items" :limit="3" :show-disabled="true" align="right" size="small"
+                                                        @pagination-change-page="dataTable">
+                                    <template #prev-nav class="page-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M15 6l-6 6l6 6" />
+                                    </svg>
+                                    </template>
+                                    
+
+                                    <template #next-nav class="page-link">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M9 6l6 6l-6 6" />
+                                    </svg>
+                                    </template>
+                                </Bootstrap5Pagination>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -162,6 +171,7 @@ import {useErrorStore} from "@/store/Error";
 import {useRoute, useRouter} from "vue-router";
 import {usePromoItemStore} from "@/store/Promo";
 import {storeToRefs} from "pinia";
+import {Bootstrap5Pagination} from 'laravel-vue-pagination';
 
 const promoItemStore = usePromoItemStore()
 const error = useErrorStore();
@@ -175,14 +185,14 @@ const table = reactive({
     currentSort: 'eff_to',
     currentSortDir: 'asc',
     search: '',
-    currentPage: '48',
+    currentPage: '12',
     sortClassActive: {
         'activeDesc': false,
         'activeAsc': true
     },
     show_disabled_job: false
 })
-const showPage = ['48', '96', '144']
+const showPage = ['12', '24', '48']
 
 let pages = {}
 
@@ -190,10 +200,10 @@ let isShownModal = ref(false);
 const product_data = ref('');
 
 
-const goToProductDetails = async(name) => {
+const goToProductDetails = async(id,name) => {
     await router.push({
         name: "ProductDetails",
-        params: {'name': name}
+        params: {'id': id,'name': name}
     });
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Promo;
+use Illuminate\Support\Facades\Http;
 class PromoController extends Controller
 {
     /**
@@ -87,5 +88,11 @@ class PromoController extends Controller
             ->whereDate('eff_to', '>=', $now)
             ->select('v.item_id','cpi.min_qty','loc_id','v.item_desc', 'inv_dim1','inv_dim2','model_id','regular_price','mbr_price','image_name')
             ->orderBy($columnOrder, $orderDirection)->paginate($perPage);
+    }
+
+    public function getItemDetails(Request $request)
+    {
+        $response = Http::get('https://localhost-ctl.challenger.sg/product/'.$request->id.'/details');
+        return $response->collect();
     }
 }

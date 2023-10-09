@@ -20,12 +20,15 @@ export default [
                 },
             },
             {
-                path: 'product-details/:name',
+                path: 'product-details/:id/:name',
                 component: () => import('@/layout/views/public/ProductDetails.vue'),
                 name: 'ProductDetails',
                 meta: {
                     title: 'Product Details',
                     requiresAuth: false,
+                    breadcrumb(route, app) {
+                        return `${route.params.name}`
+                    },
                 },
             },
             {

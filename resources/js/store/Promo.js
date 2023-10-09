@@ -4,6 +4,9 @@ import axios from "axios";
 export const usePromoItemStore = defineStore("promoItem", {
     state: () => ({
         promo_items: [],
+        item_details: [],
+        price_valid:false,
+
     }),
 
     getters: {},
@@ -20,6 +23,13 @@ export const usePromoItemStore = defineStore("promoItem", {
             this.promo_items = response.data
         },
       
+        async fetchProductDetails(upc) {
+            const uri = `api/public/item-details?id=`+upc
+            const response = await axios.get(uri);
+            this.item_details = response.data.data
+        },
+
+
 
 
     },

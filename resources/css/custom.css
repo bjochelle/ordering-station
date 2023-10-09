@@ -131,3 +131,7 @@
         transform: translateX(100%);
     }
 }
+
+.price-transparent {
+    opacity: 0.3 !important;
+  }

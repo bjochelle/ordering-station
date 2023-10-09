@@ -60,7 +60,7 @@ const decrement = (index) => {
 </script>
 
 <template>
-    <div class="container pb-lg-9 pb-xl-6">
+    <div class="container pb-lg-9 pb-xl-6 pb-6">
         <div class="row g-3">
             <div class="card">
                 <div class="card-header">

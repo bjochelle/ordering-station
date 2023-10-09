@@ -47,9 +47,14 @@
     {{--    //@vite('resources/css/app.css')--}}
 </head>
 <body>
+<script type="text/javascript" src="https://2c2p-uat-cloudfront.s3-ap-southeast-1.amazonaws.com/2C2PPGW/secureField/my2c2p-secureFields.1.0.0.min.js"></script>
+<script type="text/javascript" src="https://demo2.2c2p.com/2C2PFrontEnd/SecurePayment/api/my2c2p-sandbox.1.7.3.min.js"></script>
+<!-- 2C2P SecureField will automatically generate card input fields under form '2c2p-payment-form' -->
+
 <main class="main" id="app">
 </main>
 @vite(['resources/js/app.js'])
 
 </body>
 </html>
+

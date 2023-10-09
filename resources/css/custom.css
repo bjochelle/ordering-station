@@ -135,3 +135,11 @@
 .price-transparent {
     opacity: 0.3 !important;
   }
+
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}

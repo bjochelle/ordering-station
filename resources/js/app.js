@@ -18,6 +18,7 @@ import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import {VueMasonryPlugin} from "vue-masonry/src/masonry.plugin";
 import App from '@/App.vue'
+import VueLazyLoad from 'vue3-lazyload'
 import breadcrumbs from 'vue-3-breadcrumbs'
 
 import.meta.glob([
@@ -54,6 +55,7 @@ const app = createApp(App)
     .use(VueSweetalert2, options)
     .use(routes)
     .use(auth)
+    .use(VueLazyLoad)
     .use(VueMasonryPlugin)
     .use(VueAxios, axios)
     .use(breadcrumbs, {

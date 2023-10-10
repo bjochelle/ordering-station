@@ -31,6 +31,14 @@ export const usePromoItemStore = defineStore("promoItem", {
         showFulfillBy() {
             return (this.item_details.online_settings) ? 'Fulfilled By: ' + this.item_details.online_settings.fulfilled_by : '';
         },
+        firstDescription() {
+            const keys = Object.keys(this.descriptions);
+            if (keys.length > 0) {
+              const firstKey = keys[0];
+              return firstKey;
+            }
+            return null;
+          }
     },
 
     actions: {

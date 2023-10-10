@@ -1,5 +1,5 @@
 <template>
-    <div class="container pb-lg-9 pb-xl-6 pb-6">
+    <div class="container pb-lg-9 pb-xl-6 pb-6" v-if="item_details">
         <div class="row g-3">
             <div class="card mb-3">
                 <div class="card-body">
@@ -10,27 +10,41 @@
                         <div class="product-fulfilled">{{ showFulfillBy }}</div>
 
                         <div class="col-lg-6 mb-4 mb-lg-0">
-                            <div class="h-100 fit-cover">
-                                <div id="carousel-indicators-thumb" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                                    <div class="carousel-indicators carousel-indicators-thumb">
-                                        <button type="button" data-bs-target="#carousel-indicators-thumb" data-bs-slide-to="0" class="ratio ratio-4x3"
-                                                :style="{ backgroundImage: `url(${img_1})` }"></button>
-                                        <button type="button" data-bs-target="#carousel-indicators-thumb" data-bs-slide-to="1" class="ratio ratio-4x3 active"
-                                                :style="{ backgroundImage: `url(${img_2})` }"></button>
-                                    </div>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item">
-                                            <img class="d-block w-100" alt="" :src="img_1">
-                                        </div>
-                                        <div class="carousel-item active">
-                                            <img class="d-block w-100 " alt="" :src="img_2">
-                                        </div>
 
-                                    </div>
+                            <Carousel id="gallery" 
+                            :autoplay="2000"
+                            :transition="500"
+                            class="p-0" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
+                                <Slide v-for="(slide,index) in item_details.images" :key="index">
+                                <div class="carousel__item">
+                                    <div class="text-center text-white bold">
+                                        <img class="w-100 h-100 fit-cover"
+                                        loading="lazy"
+                                       :src="buildImageSrc(slide.src,'product_thumb')" alt="">
+                                    </div> 
                                 </div>
-                            </div>
+                                </Slide>
+                            </Carousel>
 
-                        </div>
+                            <Carousel
+                                id="thumbnails"
+                                :items-to-show="4"
+                                :wrap-around="true"
+                                v-model="currentSlide"
+                                ref="carousel"
+                            >
+                                <Slide v-for="(slide,index) in item_details.images" :key="slide">
+                                <div class="carousel__item" @click="slideTo(index - 1)">
+                                    <div class="text-center text-white bold">
+                                        <img class="w-100 h-100 fit-cover"
+                                        loading="lazy"
+                                       :src="buildImageSrc(slide.src,'product_thumb')" alt="">
+                                    </div>   
+                                </div>
+                                </Slide>
+                            </Carousel>
+                 
+                            </div>
                         <div class="col-lg-6 col-md-6">
 
                             <div v-if="price_valid" class="product-detail" :class="(price_valid) ? '' : 'price-transparent'">
@@ -95,6 +109,7 @@
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation" v-for="(desc,index) in descriptions" :key="index">
                                         <a class="nav-link ps-0" id="whats-in-the-box-tab" data-bs-toggle="tab"
+                                        :class="firstDescription === index ? 'active':''"
                                            :href="'#tab-' + desc.name" role="tab"
                                            :aria-controls="'tab-' + desc.name"
                                            aria-selected="true">{{ desc.name }}</a>
@@ -105,7 +120,8 @@
                                          :id="'tab-' + desc.name"
                                          :aria-labelledby="desc.name + '-tab'"
                                          role="tabpanel"
-                                         v-for="(desc,index)  in descriptions">
+                                         v-for="(desc,index)  in descriptions"
+                                         :class="firstDescription === index ? 'active show':''">
                                         <div class="mt-3">
                                             <template v-if="'OVERVIEW'===index">
                                                 <div class="overview_div_hachi" v-html="addWidthStyleIfImageExists(desc.body)"></div>
@@ -127,11 +143,13 @@
 
 <script setup>
 import VueSlickCarousel from 'vue-slick-carousel'
-// optional style for arrows & dots
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+  import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+  // optional style for arrows & dots
+  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 import {ref, onBeforeUnmount, onMounted, reactive,watch} from "vue";
-
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
 import Swiper from 'swiper/bundle';
 
@@ -152,12 +170,18 @@ const error = useErrorStore();
 
 const route = useRoute();
 const router = useRouter();
-const {item_details,price_valid,descriptions,showPriceTag,showUnitPrice,showFulfillBy} = storeToRefs(promoItemStore)//job variable from store
+const {item_details,price_valid,descriptions,showPriceTag,
+    showUnitPrice,showFulfillBy,firstDescription} = storeToRefs(promoItemStore)//job variable from store
 const {fetchProductDetails,fetchDescription} = promoItemStore; //job methods from store
 
 
 
 const quantity = ref(0)
+const currentSlide = ref(0)
+
+const slideTo = (val) => {
+    currentSlide.value = val;
+}
 
 const increment = () => {
     quantity.value += 1;
@@ -182,10 +206,20 @@ const addWidthStyleIfImageExists = (htmlContent)=>{
     return htmlContent;
 }
 
+
+
+const buildImageSrc = (src)=> {
+      if (src.substr(0, 4) === 'http') {
+        return src;
+      }
+
+      return 'https://cdn.hachi.tech/assets/images/product_images/' + src;
+    }
+
 onMounted(async() => {
     const id = route.params['id'];
     await fetchProductDetails(id);
-    await fetchDescription(id);
+    // await fetchDescription(id);
     const swiper = new Swiper('.swiper', {
         // Optional parameters
         slidesPerView:5,

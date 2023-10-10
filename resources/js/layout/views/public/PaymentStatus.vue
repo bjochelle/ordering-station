@@ -5,14 +5,12 @@
 </script>
 
 <template>
-    <div class="container  pb-lg-9 pb-xl-6 pb-6">
+    <div class="container   ">
         <div class="row g-3">
-           
+
             <!-- component -->
 
-
-
-            <div class="col-xl-4 order-xl-1">
+            <div class="col-sm-12 col-xl-8 offset-lg-2 order-xl-1">
                 <div class="card">
 
                     <div class="p-2 text-center pt-4">
@@ -25,16 +23,16 @@
                         <div class="text-center">
                             <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Done!</h3>
                             <p class="text-gray-600 my-2">Thank you for completing your secure online payment.</p>
-                        
+
                         </div>
                     </div>
-  
+
                     <div class="card-header bg-light btn-reveal-trigger d-flex flex-between-center">
                         <h5 class="mb-0">Order Number </h5>
                         <a class="btn btn-link btn-sm btn-reveal text-600" href="#">
                             1111
                        </a>
-                  
+
                             </div>
                     <div class="card-body">
                         <table class="table table-borderless fs--1 mb-0">
@@ -56,7 +54,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </div>
 </template>

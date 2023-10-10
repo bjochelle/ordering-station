@@ -76,7 +76,7 @@
                                     <div class="col-auto">
                                         <form class="row gx-2">
                                             <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Sort by:</small></div>
-                                            <div class="col-auto"> 
+                                            <div class="col-auto">
                                                 <select class="form-select form-select-sm" aria-label="Bulk actions"
                                                 v-model="table.currentSort">
                                                 <option value="eff_to">Latest</option>
@@ -84,7 +84,7 @@
                                                 <option value="regular_price">Price</option>
                                             </select></div>
                                             <div class="col-auto d-none d-lg-block"><small class="fw-semi-bold">Per Page:</small></div>
-                                            <div class="col-auto"> 
+                                            <div class="col-auto">
                                                 <select class="form-select form-select-sm" aria-label="Bulk actions"
                                                 v-model="table.currentPage">
                                                 <option v-for="page in showPage">{{ page }}</option>
@@ -97,33 +97,49 @@
                     </div>
                 </div>
                 <div class="row mb-3 g-3">
-                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails(item.item_id,item.item_desc)"
-                    v-for="item in promo_items.data">
-                        <div class="card h-100 overflow-hidden">
-                            <div class="card-body p-0 d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="text-center text-white bold">
-                                        <img class="w-100 h-100 fit-cover" 
-                                        loading="lazy" 
-                                        :src="buildImageSrc(item.image_name,'product_thumb')" alt="">
-                                    </div>
-                                </div>
-                                <div class="p-3">
-                                    <h5 class="fs-0">
-                                        <span class="text-dark">{{ item.item_desc }}</span>
-                                    </h5>
-                                    <p class="fs--1 mb-3">
-                                        <span class="text-500">{{ item.inv_dim1 }} &amp; {{ item.inv_dim2 }}</span>
-                                    </p>
-                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                        SGD {{ item.regular_price }}<del class="ml-2 fs--1 text-500">SGD {{ item.mbr_price }} </del>
-                                    </h5>
-                                  
+<!--                    <article class="col-md-4 col-xxl-3" @click="goToProductDetails(item.item_id,item.item_desc)"-->
+<!--                    v-for="item in promo_items.data">-->
+<!--                        <div class="card h-100 overflow-hidden">-->
+<!--                            <div class="card-body p-0 d-flex flex-column justify-content-between">-->
+<!--                                <div>-->
+<!--                                    <div class="text-center text-white bold">-->
+<!--                                        <img class="w-100 h-100 fit-cover"-->
+<!--                                        loading="lazy"-->
+<!--                                        :src="buildImageSrc(item.image_name,'product_thumb')" alt="">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="p-3">-->
+<!--                                    <h5 class="fs-0">-->
+<!--                                        <span class="text-dark">{{ item.item_desc }}</span>-->
+<!--                                    </h5>-->
+<!--                                    <p class="fs&#45;&#45;1 mb-3">-->
+<!--                                        <span class="text-500">{{ item.inv_dim1 }} &amp; {{ item.inv_dim2 }}</span>-->
+<!--                                    </p>-->
+<!--                                    <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">-->
+<!--                                        SGD {{ item.regular_price }}<del class="ml-2 fs&#45;&#45;1 text-500">SGD {{ item.mbr_price }} </del>-->
+<!--                                    </h5>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </article>-->
+                    <div v-if="!promo_items.data" class="row mb-3 g-3"
+                         @click="goToProductDetails('0194253749462','apple-iphone-14-plus-512gb-yellow0')">
+                        <article class="col-md-4 col-xxl-3" v-for="i in 12">
+                        <div class="card h-100 overflow-hidden shadow">
+                            <div class="card-body p-0 d-flex flex-column justify-content-between" style="border: 1px solid #E0E0E0;">
+                                <div class=" text-center  text-white bold skeleton-box skeleton-img" ></div>
+                                <div class="p-3 pb-0 mb-2 skeleton-details">
+                                    <h6 class="fs-1 d-flex skeleton-box"> </h6>
+                                    <h5 class="fs-1 d-flex skeleton-box w-50"> </h5>
                                 </div>
                             </div>
                         </div>
-                    </article>
-                 
+                        </article>
+                    </div>
+
+
+
                 </div>
 
                 <div class="card">
@@ -144,7 +160,7 @@
                                         <path d="M15 6l-6 6l6 6" />
                                     </svg>
                                     </template>
-                                    
+
 
                                     <template #next-nav class="page-link">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -250,7 +266,7 @@ fetchPromoItem(table, pages);
 
 
 onMounted(() => {
-     dataTable(table,pages);
+ //    dataTable(table,pages);
 })
 
 

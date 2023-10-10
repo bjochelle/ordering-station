@@ -36,5 +36,6 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('public')->group(function () {
     Route::get('/promo', [\App\Http\Controllers\PromoController::class, 'getPromoLocation']);
     Route::get('/item-details', [\App\Http\Controllers\PromoController::class, 'getItemDetails']);
+    Route::get('/item-description', [\App\Http\Controllers\PromoController::class, 'getItemDescription']);
 });
 

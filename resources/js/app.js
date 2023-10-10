@@ -25,6 +25,10 @@ import.meta.glob([
     // '../fonts/**',
 ]);
 
+
+// import { currencyFormat } from './services/custom-filter'; // Adjust the path as needed
+// import {formatCurrency} from "@/services/formatNumber";
+
 const options = {
     customClass: {
         confirmButton: 'btn btn-sm btn-primary m-1',
@@ -42,6 +46,7 @@ vSelect.props.components.default = () => ({
         render: () => h('span', '🔽'),
     },
 });
+
 
 const pinia = createPinia()
 const app = createApp(App)

@@ -92,7 +92,15 @@ class PromoController extends Controller
 
     public function getItemDetails(Request $request)
     {
-        $response = Http::get('https://localhost-ctl.challenger.sg/product/'.$request->id.'/details');
+//        $response = Http::get('https://localhost-ctl.challenger.sg/product/'.$request->id.'/details');
+        $response = Http::get('https://www.challenger.sg/product/'.$request->id.'/details');
+        return $response->collect();
+    }
+
+    public function getItemDescription(Request $request)
+    {
+//        $response = Http::get('https://localhost-ctl.challenger.sg/product/'.$request->id.'/details');
+        $response = Http::get('https://www.challenger.sg/product/'.$request->id.'/descriptions');
         return $response->collect();
     }
 }

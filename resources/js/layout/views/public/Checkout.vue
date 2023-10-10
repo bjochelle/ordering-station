@@ -410,7 +410,7 @@ const dueOnCountdownEnd = async() => {
 </script>
 
 <template>
-    <div class="container  pb-lg-9 pb-xl-6 pb-6">
+    <div class="container  pb-lg-9 pb-xl-6 ">
         <div class="row g-3">
             <div class="col-sm-12 col-lg-6 offset-lg-3 order-timeout-counter text-center bg-soft-danger p-3">
                 <p class="order-timeout-counter-text h6 text-danger mb-1 ">

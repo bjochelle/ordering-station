@@ -2,7 +2,7 @@
     <Header></Header>
     <router-view v-slot="{ Component,route }">
         <Transition mode="out-in" name="slide-fade">
-            <div :key="route.name" class="component-div mt-7">
+            <div :key="route.name" class="component-div mt-7 mb-7">
                 <component :is="Component"/>
             </div>
         </Transition>

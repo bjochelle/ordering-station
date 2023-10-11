@@ -1,17 +1,41 @@
 <template>
     <div class="container pb-lg-9 pb-xl-6 pb-6" v-if="item_details">
         <div class="row g-3">
+
+<!--            <ol class="breadcrumb" v-if="item_details.online_settings">-->
+<!--                <template v-for="(map,index) in item_details.online_settings.category_map" :key="index">-->
+<!--                    <li class="breadcrumb-item"-->
+<!--                    :class="index === item_details.online_settings.category_map.length-1?'active':''">-->
+<!--                        <a href="#" v-if="index !== item_details.online_settings.category_map.length-1">{{map.name}} </a>-->
+<!--                        <span v-else="">{{map.name}}</span>-->
+<!--                    </li>-->
+<!--                </template>-->
+<!--            </ol>-->
+
+            <ol class="breadcrumb" v-if="item_details.online_settings">
+                <template v-for="(map, index) in item_details.online_settings.category_map" :key="index">
+                    <li class="breadcrumb-item" :class="{ 'active': index === item_details.online_settings.category_map.length - 1 }">
+                        <template v-if="index !== item_details.online_settings.category_map.length - 1">
+                            <a href="#">{{ map.name }}</a>
+                        </template>
+                        <template v-else>
+                            <span>{{ map.name }}</span>
+                        </template>
+                    </li>
+                </template>
+            </ol>
+
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row">
                         <h5>
                             {{ item_details.item_desc }}
                         </h5>
-                        <div class="product-fulfilled">{{ showFulfillBy }}</div>
+                        <div class="product-fulfilled h-6 mb-3">{{ showFulfillBy }}</div>
 
                         <div class="col-lg-6 mb-4 mb-lg-0">
 
-                            <Carousel id="gallery" 
+                            <Carousel id="gallery"
                             :autoplay="2000"
                             :transition="500"
                             class="p-0" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
@@ -21,7 +45,7 @@
                                         <img class="w-100 h-100 fit-cover"
                                         loading="lazy"
                                        :src="buildImageSrc(slide.src,'product_thumb')" alt="">
-                                    </div> 
+                                    </div>
                                 </div>
                                 </Slide>
                             </Carousel>
@@ -39,42 +63,36 @@
                                         <img class="w-100 h-100 fit-cover"
                                         loading="lazy"
                                        :src="buildImageSrc(slide.src,'product_thumb')" alt="">
-                                    </div>   
+                                    </div>
                                 </div>
                                 </Slide>
                             </Carousel>
-                 
+
                             </div>
                         <div class="col-lg-6 col-md-6">
 
                             <div v-if="price_valid" class="product-detail" :class="(price_valid) ? '' : 'price-transparent'">
-            <div class="prices">
+            <div class="prices" v-if="item_details.prices">
 
               <span>{{ showPriceTag }}     {{ formatCurrency(showUnitPrice)  }}
               </span> <br>
               <span class="text-danger h6" v-if="item_details && item_details.prices && item_details.prices.unit_rebate_points > 0">+ Get ${{ item_details.prices.unit_rebate_amount}} Cashback</span>
-<!--              <span>-->
-<!--                <i v-if="widgetContent.prices.regular_price > widgetContent.prices.unit_price">U.P. {{-->
-<!--                  widgetContent.prices.regular_price | amount-->
-<!--                }} &nbsp;</i>-->
-<!--                <p class="IPPMsg text-sm" v-if="showUnitPrice >= 500">0% interest instalment plan (up to 24 months) for-->
-<!--                  selected products above $500</p>-->
-<!--                &lt;!&ndash; removed v_redemption link &ndash;&gt;-->
-<!--              </span>-->
+              <p>
+                <span v-if="item_details.prices.regular_price > item_details.prices.unit_price">U.P. {{
+                        formatCurrency(item_details.prices.regular_price)
+                }} &nbsp;</span>
+                <p class="IPPMsg h6 text-black-50" v-if="showUnitPrice >= 500">0% interest instalment plan (up to 24 months) for
+                  selected products above $500</p>
+              </p>
 <!--              <span v-if="price_valid && getGuestPromoText" class="text-red-700 text-sm"-->
 <!--                v-html="getGuestPromoText"></span>-->
             </div>
-
 <!--            <rating-stars :item-id="widgetContent.item_id" />-->
           </div>
 
                             <p class="fs--1">
 
                             </p>
-                            <h4 class="d-flex align-items-center">
-                                <span class="text-warning mr-2">SGD 1200</span><span class="mr-1 fs--1 text-500"><del class="mr-1">SGD 2400</del><strong>-50%</strong></span>
-                            </h4>
-                            <p class="fs--1">Stock: <strong class="text-success">Available</strong></p>
 
                             <div class="row">
                                 <div class="col-auto pe-0">
@@ -164,6 +182,7 @@ import {useRoute, useRouter} from "vue-router";
 import {usePromoItemStore} from "@/store/Promo";
 import {formatCurrency} from "@/services/formatNumber";
 import {storeToRefs} from "pinia";
+import Template from "@/layout/Template.vue";
 
 const promoItemStore = usePromoItemStore()
 const error = useErrorStore();
@@ -219,7 +238,7 @@ const buildImageSrc = (src)=> {
 onMounted(async() => {
     const id = route.params['id'];
     await fetchProductDetails(id);
-    // await fetchDescription(id);
+     await fetchDescription(id);
     const swiper = new Swiper('.swiper', {
         // Optional parameters
         slidesPerView:5,

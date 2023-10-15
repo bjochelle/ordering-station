@@ -89,22 +89,39 @@
                             <div class="row"
                                  v-if="item_details.online_settings && item_details.online_settings.color_opt.length > 0">
                                 <div class=" col-sm-3 text-sm" style="line-height: 32px;">
-                                    <p class="fs--1">Colour: </p>
+                                    <p class="fs--1">Colour </p>
                                 </div>
-
                                 <div class=" col-sm-9 m-0">
                                     <strong class="fw-bold">{{item_details.online_settings.color_id}}</strong><br>
-                                    <div class="avatar avatar-2xl me-1" v-for="clr in item_details.online_settings.color_opt">
+                                    <div class="avatar avatar-2xl me-1" v-for="clr in item_details.color_settings">
                                         <img class="img-prototype"
                                              :class="clr.item_id === item_details.item_id ? 'border border-warning border-2' : 'border border-1 cursor-pointer'"
                                              v-lazy="buildImageSrc(clr.image_name, 'product_thumb')"
-                                             @click="getSelectedColor(clr.item_id,clr.short_desc)">
+                                             @click="goToProductDetails(clr.item_id,clr.short_desc)">
 
                                     </div>
                                 </div>
                             </div>
-
-
+                            <div class="row"
+                                 v-if="item_details.p_storage">
+                                <div class=" col-sm-3 text-sm" style="line-height: 32px;">
+                                    <p class="fs--1">Storage Capacity </p>
+                                </div>
+                                <div class=" col-sm-9 m-0">
+                                    <strong class="fw-bold">
+                                        <span v-if="item_details.p_storage.length > 0">{{ item_details.item_storage }}</span>
+                                        <span v-else="" class="text-red-700">No other storage found</span>
+                                    </strong><br>
+                                    <template v-for="pclr in item_details.p_storage">
+                                        <span v-if="pclr.inv_dim5 != 'NA'" 
+                                        class="me-1 p-1"
+                                        :class="pclr.item_id === item_details.item_id ? 'border border-warning border-2' : 'border border-1 cursor-pointer'"
+                                        @click="pclr.item_id != item_details.item_id && goToProductDetails(pclr.item_id, pclr.item_desc)">
+                                        {{ pclr.inv_dim5 }}
+                                        </span>
+                                    </template>
+                                </div>
+                            </div>
 
                             <div class="row">
 
@@ -132,7 +149,7 @@
                                 </div>
 
                                 <div class="mb-5 mt-5" v-if="price_valid">
-<!--PWP OR FLB-->
+                                    <!--PWP OR FLB-->
                                 </div>
 
                                 <div class="col-auto  mt-3 ">
@@ -267,6 +284,16 @@ const addWidthStyleIfImageExists = (htmlContent)=>{
 }
 
 
+const goToProductDetails = async(id,name) => {
+    await router.push({
+        name: "ProductDetails",
+        params: {'id': id,'name': name}
+    });
+
+        await fetchProductDetails(id);
+        await fetchDescription(id);
+
+}
 
 const buildImageSrc = (src)=> {
       if (src.substr(0, 4) === 'http') {

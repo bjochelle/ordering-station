@@ -1,11 +1,37 @@
 <script setup>
-import {computed, onBeforeUnmount, onMounted, ref, watch} from "vue";
+import {computed, onBeforeUnmount, onMounted, ref, watch,reactive} from "vue";
 import {useRoute, useRouter} from "vue-router";
 const route = useRoute();
 const router = useRouter();
 const  navbarDarkenOnScroll =ref(0);
 
 import logo from '../../../../../images/logo.png';
+
+
+const form_search = reactive({
+    search: '',
+    currentPage: '12',
+})
+
+
+const searchProduct = _.debounce(function () {
+console.log(form_search,'form_search')
+
+}, 800);
+
+watch(
+    () => [form_search.search],
+    async (newValue) => {
+        if (newValue[0].length) { // search
+            searchProduct(form_search);
+        } else {
+            let query = await Object.assign({}, route.query);
+            delete query.search;
+            await router.replace({query});
+            searchProduct(form_search);
+        }
+    }
+)
 </script>
 
 <template>
@@ -25,7 +51,10 @@ import logo from '../../../../../images/logo.png';
                 <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
                     <li class="nav-item">
                         <div class="search-box" data-list="{&quot;valueNames&quot;:[&quot;title&quot;]}">
-                            <form class="position-relative" data-bs-toggle="search" data-bs-display="static" aria-expanded="false"><input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." aria-label="Search">
+                            <form class="position-relative" data-bs-toggle="search" data-bs-display="static" aria-expanded="false">
+                                <input class="form-control search-input fuzzy-search" type="search" placeholder="Search..." 
+                                aria-label="Search"
+                                v-model="form_search.search">
                                 <svg class="svg-inline--fa fa-search  search-box-icon"
                                      width="18" height="18"
                                      aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <span class="fas fa-search search-box-icon"></span> Font Awesome fontawesome.com -->

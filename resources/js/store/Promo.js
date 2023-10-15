@@ -57,6 +57,7 @@ export const usePromoItemStore = defineStore("promoItem", {
         async fetchProductDetails(upc) {
             // const uri = `api/public/item-details?id=`+upc
             // const response = await axios.get(uri);
+            // this.item_details=response.data.data;
             this.item_details = {
                 "trans_qty": 0,
                     "item_id": "0194253749462",

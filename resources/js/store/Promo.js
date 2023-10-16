@@ -7,6 +7,132 @@ export const usePromoItemStore = defineStore("promoItem", {
         item_details: {},
         descriptions: {},
         price_valid:false,
+        cartOptions:{
+            item_qty: 0,
+            max_qty: 20,
+            avail_qty: 0,
+            store_id: '',
+            delv_method: '',
+            delv_options: [],
+            scl_options: [],
+            unit_price: 0, //this.item_details.prices.unit_price
+            inv_type: '', //this.item_details.online_settings.inv_type
+            item_type: '', //this.item_details.settings.item_type
+            limit_options: '', //this.item_details.settings.limit_options
+            loaded: false,
+        },
+        inventory:[
+            {
+                "item_id": "0194253749462",
+                "loc_id": "BF",
+                "soh_level": "Available",
+                "soh_color": "#3CA400",
+                "shop_name": "Bugis Junction (Flagship)",
+                "street_line1": "200 Victoria Street",
+                "street_line2": "#B1-26, Bugis Junction",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "JP",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "Jurong Point",
+                "street_line1": "63 Jurong West Central 3",
+                "street_line2": "JP2#B1-94/95/96, Jurong Point Shopping Centre",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "313",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "313 @ Somerset",
+                "street_line1": "313 Orchard Road",
+                "street_line2": "#04-01/02, 313@Somerset",
+                "street_line3": "",
+                "open_hours": "11am - 09:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "JEM",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "Jem",
+                "street_line1": "50 Jurong Gateway Road",
+                "street_line2": "#04-01, JEM",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "VC",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "VivoCity",
+                "street_line1": "1 HarbourFront Walk",
+                "street_line2": "#02-34/35, VivoCity",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "BM",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "Bedok Mall",
+                "street_line1": "311 New Upper Changi Road",
+                "street_line2": "#B1-18/19/20, Bedok Mall",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "NEX",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "NEX",
+                "street_line1": "23 Serangoon Central",
+                "street_line2": "#04-33/34, NEX",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "PS",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "Plaza Singapura",
+                "street_line1": "68 Orchard Road",
+                "street_line2": "#04-12/12A, Plaza Singapura",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "TM",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "Tampines Mall",
+                "street_line1": "4 Tampines Central 5",
+                "street_line2": "#04-05/06/07, Tampines Mall",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            },
+            {
+                "item_id": "0194253749462",
+                "loc_id": "WP",
+                "soh_level": "Limited availability",
+                "soh_color": "#FFA500",
+                "shop_name": "Waterway Point",
+                "street_line1": "83 Punggol Central",
+                "street_line2": "#B1-26, Waterway Point",
+                "street_line3": "",
+                "open_hours": "11am - 9:30pm"
+            }
+        ]
     }),
 
     getters: {

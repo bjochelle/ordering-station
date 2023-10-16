@@ -170,11 +170,14 @@
                                     <span class="">Add To Cart</span></a>
                                 </div>
 
-                                <div class="col-auto  mt-3">
-                                    <button class="btn  btn-falcon-default text-primary border-300 bg-soft-dark"
-                                            data-field="input-quantity"
-                                            data-type="plus">Check Stock Availability
-                                    </button>
+                        
+
+                                <div class="mb-12 mt-5" v-if="!price_valid">
+                                    <i class="fas fa-spinner fa-pulse"></i> LOADING PRODUCT...
+                                </div>
+
+                                <div class="mt-2 mb-5" v-if="price_valid">
+                                    <inventory-avail :itemId="item_details.item_id" :cartOptions="cartOptions" />
                                 </div>
                             </div>
                         </div>
@@ -227,6 +230,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import {ref, onBeforeUnmount, onMounted, reactive,watch} from "vue";
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import InventoryAvail from './component/InventoryAvail.vue';
 
 import Swiper from 'swiper/bundle';
 
@@ -250,7 +254,7 @@ const error = useErrorStore();
 const route = useRoute();
 const router = useRouter();
 const {item_details,price_valid,descriptions,showPriceTag,
-    showUnitPrice,showFulfillBy,firstDescription} = storeToRefs(promoItemStore)//job variable from store
+    showUnitPrice,showFulfillBy,firstDescription,cartOptions} = storeToRefs(promoItemStore)//job variable from store
 const {fetchProductDetails,fetchDescription} = promoItemStore; //job methods from store
 
 const quantity = ref(0)

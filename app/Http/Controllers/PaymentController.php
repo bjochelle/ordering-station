@@ -16,11 +16,16 @@ class PaymentController extends Controller
     public function payment2c2p(Request $request)
     {
 
-        $payurl = isset($request->payurl) ? $request->payurl : '';
+
+   
+        // $payurl = env('PAY_URL');
+        $payurl = "https://dev-payment.chugo.sg/api";
+
+
 
         $paymentData = array(
             "amount" => 100000,
-            "hostname" => "pandai.dev",
+            "hostname" => "dev-web.lexiscard.asia",
             "invoiceno" => 'MOS00001',
             "payurl" => $payurl,
             "logourl" => "",
@@ -30,12 +35,21 @@ class PaymentController extends Controller
             "REDIRECT_ERROR_URL" => env('APP_URL')."/fail-payment"
         );
 
-        return $this->apiSuccessResponse(1, "success",
-                array("paymentLink" => $this->base64url_encode(json_encode($paymentData))));
+
+        return response()->json([
+            'result' =>array("paymentLink" => $this->base64url_encode(json_encode($paymentData))),
+            'message' => "success",
+            'code' => 1,
+        ], 200);
 
     }
 
-    public function MosPaymentFailed(Request $request){
+    private function base64url_encode($data)
+    {
+        return str_replace(array('+', '/'), array('-', '_'), base64_encode($data));
+    }
+
+    public function mosPaymentFailed(Request $request){
         $payload = $request;
         $data = json_decode(base64_decode($payload), true);
 
@@ -56,7 +70,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function MosPaymentComplete(Request $request){
+    public function mosPaymentComplete(Request $request){
         $paymentPayload = $request->payload;
 
         $jwt_response = $this->verifyJwt($paymentPayload);
@@ -97,6 +111,10 @@ class PaymentController extends Controller
                 Redis::expire($key, 3600); // 1 hour
             }
         }
+    }
+
+    public function mosPaymentCompleteFrontend(Request $request){
+
     }
 
 

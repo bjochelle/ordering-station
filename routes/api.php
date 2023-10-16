@@ -37,5 +37,10 @@ Route::prefix('public')->group(function () {
     Route::get('/promo', [\App\Http\Controllers\PromoController::class, 'getPromoLocation']);
     Route::get('/item-details', [\App\Http\Controllers\PromoController::class, 'getItemDetails']);
     Route::get('/item-description', [\App\Http\Controllers\PromoController::class, 'getItemDescription']);
-});
 
+
+    Route::get('/payment-2c2p', [\App\Http\Controllers\PaymentController::class, 'payment2c2p']);
+    Route::post('/payment-complete', [\App\Http\Controllers\PaymentController::class, 'mosPaymentComplete']);
+    Route::post('/payment-complete-frontend', [\App\Http\Controllers\PaymentController::class, 'payment2c2p']);
+    Route::get('/fail-2c2p', [\App\Http\Controllers\PaymentController::class, 'mosPaymentFailed']);
+});

@@ -113,7 +113,7 @@
                                         <span v-else="" class="text-red-700">No other storage found</span>
                                     </strong><br>
                                     <template v-for="pclr in item_details.p_storage">
-                                        <span v-if="pclr.inv_dim5 != 'NA'" 
+                                        <span v-if="pclr.inv_dim5 != 'NA'"
                                         class="me-1 p-1"
                                         :class="pclr.item_id === item_details.item_id ? 'border border-warning border-2' : 'border border-1 cursor-pointer'"
                                         @click="pclr.item_id != item_details.item_id && goToProductDetails(pclr.item_id, pclr.item_desc)">
@@ -150,6 +150,9 @@
 
                                 <div class="mb-5 mt-5" v-if="price_valid">
                                     <!--PWP OR FLB-->
+                                    <cart-options :itemId="item_details.item_id"
+                                                  :cartOptions="cartOptions" :pwpOptions="item_details.pwp" :additionaDetails="item_details.additional"
+                                                  ref="productPage" />
                                 </div>
 
                                 <div class="col-auto  mt-3 ">
@@ -170,7 +173,7 @@
                                     <span class="">Add To Cart</span></a>
                                 </div>
 
-                        
+
 
                                 <div class="mb-12 mt-5" v-if="!price_valid">
                                     <i class="fas fa-spinner fa-pulse"></i> LOADING PRODUCT...
@@ -222,23 +225,11 @@
 </template>
 
 <script setup>
-import VueSlickCarousel from 'vue-slick-carousel'
-  import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-  // optional style for arrows & dots
-  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-
 import {ref, onBeforeUnmount, onMounted, reactive,watch} from "vue";
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import InventoryAvail from './component/InventoryAvail.vue';
-
-import Swiper from 'swiper/bundle';
-
-// import styles bundle
-import 'swiper/css/bundle';
-
-import img_1 from '@/../images/products/1.jpg';
-import img_2 from '@/../images/products/1-3.jpg';
+import CartOptions from './component/CartOptions.vue';
 
 import {useErrorStore} from "@/store/Error";
 import {useRoute, useRouter} from "vue-router";
@@ -247,6 +238,11 @@ import {formatCurrency} from "@/services/formatNumber";
 import {storeToRefs} from "pinia";
 import Template from "@/layout/Template.vue";
 import RatingStars from "@/layout/views/public/component/RatingStars.vue";
+
+import {useFullscreenLoader} from "@/store/loader";
+const loaderStore = useFullscreenLoader()
+let {fullscreen_loader} = storeToRefs(loaderStore)//job variable from store
+
 
 const promoItemStore = usePromoItemStore()
 const error = useErrorStore();
@@ -293,9 +289,10 @@ const goToProductDetails = async(id,name) => {
         name: "ProductDetails",
         params: {'id': id,'name': name}
     });
-
-        await fetchProductDetails(id);
-        await fetchDescription(id);
+    fullscreen_loader.value =true;
+    await fetchProductDetails(id);
+    await fetchDescription(id);
+    fullscreen_loader.value =false;
 
 }
 
@@ -307,59 +304,15 @@ const buildImageSrc = (src)=> {
     }
 
 onMounted(async() => {
+    fullscreen_loader.value =true;
     const id = route.params['id'];
     await fetchProductDetails(id);
      await fetchDescription(id);
-    const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        slidesPerView:5,
-        pagination:false,
-        loop: true,
-        clickable:true,
-        spaceBetween:10,
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        allowSlidePrev: true,
-        allowSlideNext: true,
-        autoplay:false,
-        cssMode:"true",
-        breakpoints:{
-            280: {
-                slidesPerView: 1,
-                    spaceBetween: 20
-            },
-            320: {
-                slidesPerView: 1,
-                    spaceBetween: 20
-            },
-            480: {
-                slidesPerView: 2,
-                    spaceBetween: 20
-            },
-            640: {
-                slidesPerView: 3,
-                    spaceBetween: 10
-            },
-            960: {
-                slidesPerView: 5,
-                    spaceBetween: 10
-            }
-        },
-        effect:'crossFade'
-
-
-
-    });
+    fullscreen_loader.value =false;
 })
 
 </script>
 
 <style scoped>
-.swiper-button-prev, .swiper-button-next {
-    width: calc(var(--swiper-navigation-size) / 22 * 27);
-}
+
 </style>

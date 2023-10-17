@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SysApiLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Validation\ValidationData;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
@@ -15,13 +16,8 @@ class PaymentController extends Controller
 
     public function payment2c2p(Request $request)
     {
-
-
-   
         // $payurl = env('PAY_URL');
         $payurl = "https://dev-payment.chugo.sg/api";
-
-
 
         $paymentData = array(
             "amount" => 100000,
@@ -35,6 +31,7 @@ class PaymentController extends Controller
             "REDIRECT_ERROR_URL" => env('APP_URL')."/fail-payment"
         );
 
+        Redirect::to($url);
 
         return response()->json([
             'result' =>array("paymentLink" => $this->base64url_encode(json_encode($paymentData))),

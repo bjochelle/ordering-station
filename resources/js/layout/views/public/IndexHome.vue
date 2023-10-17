@@ -1,5 +1,13 @@
 <template>
     <Header></Header>
+    <loading :active="fullscreen_loader"
+             :can-cancel="false"
+             :is-full-page="fullPage"
+             color="#007BFF"
+             background-color="#ccc"
+             :height=height
+             :width=width
+    />
     <router-view v-slot="{ Component,route }">
         <Transition mode="out-in" name="slide-fade">
             <div :key="route.name" class="component-div mt-7 mb-7" id="container">
@@ -13,6 +21,16 @@
 <script setup>
 import Footer from "@/layout/views/public/component/Footer.vue";
 import Header from "@/layout/views/public/component/Header.vue";
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { ref} from "vue";
+import {storeToRefs} from "pinia";
+import {useFullscreenLoader} from "@/store/loader";
+const loaderStore = useFullscreenLoader()
+const {fullscreen_loader} = storeToRefs(loaderStore)//job variable from store
+const fullPage = ref(true);
+const width = ref(128);
+const height = ref(128);
 </script>
 
 <style>

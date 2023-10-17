@@ -197,6 +197,10 @@ const router = useRouter();
 const {promo_items} = storeToRefs(promoItemStore)//job variable from store
 const {fetchPromoItem} = promoItemStore; //job methods from store
 
+import {useFullscreenLoader} from "@/store/loader";
+const loaderStore = useFullscreenLoader()
+let {fullscreen_loader} = storeToRefs(loaderStore)//job variable from store
+
 const table = reactive({
     currentSort: 'eff_to',
     currentSortDir: 'asc',
@@ -246,6 +250,7 @@ if (typeof page === 'undefined') {
 pages = page;
 
 fetchPromoItem(table, pages);
+    fullscreen_loader.value = false
 }, 800);
 
  watch(

@@ -180,6 +180,17 @@ export const usePromoItemStore = defineStore("promoItem", {
             this.promo_items = response.data
         },
 
+        async getInventoryAll(params) {
+            // const uri = 'api/product/inventory-all?' +
+            //     'page=' + page +
+            //     '&search=' + options.search +
+            //     '&sortby=' + options.currentSort +
+            //     '&sortdir=' + options.currentSortDir +
+            //     '&currentpage=' + options.currentPage;
+            // const response = await axios.get(uri);
+            // this.promo_items = response.data
+        },
+
         async fetchProductDetails(upc) {
             // const uri = `api/public/item-details?id=`+upc
             // const response = await axios.get(uri);
